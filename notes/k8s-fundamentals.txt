@@ -1,0 +1,94 @@
+
+
+==> when kubeclt used to create pods we receive the message created successfully it means the configuration is saved.
+
+ETCD:
+- It is a highly available key-value paired database system of k8s
+- only Kube-apiserver can talk to ETCD
+- everything is encrypted
+
+Kube-apiserver:
+- Is an apiserver component of k8s control plane
+- it is being triggered by kubectl to interact
+- It can scale horizontally (like deploying more instances)
+- clients can use the apiserver's watch mechanism to track the changes
+
+Controller Manager:
+- Component that runs the controller process
+- Each controller is separate process
+- multiple controller combined into single binary and run in a single process
+
+-> It is a service running inside k8s master node
+
+a) Node Controllers:
+  It is responsible for noticing and responding when nodes go down.
+b) Job Controllers:
+  It watches for job objects that represent one of the tasks and then create the pod to run the task to completion
+c) Endpoints Controller:
+  It populates and join objects
+d) Service account and token controller:
+  Creates the default accounts and api tokens for new namespace
+
+-> Namespace creation and lifecycle
+-> Event garbage collection
+-> Terminated-pod garbage collection
+-> Casacading-deletion garbage collection
+-> Node garbage collection
+
+
+Kube-Scheduler:
+- It watches for newly created pods
+
+
+Kubelet:
+-> It is a service
+-> starts the pod using container runtime
+-> verifies pods and their container
+-> Monitor lifecycle, and checks for readiness
+
+Kube-Proxy:
+-> It runs on each node in the cluster.
+-> Keeps track on each rules of the nodes.
+-> It allows network sessions of cluster to communicate with pods
+-> If an operating system packet filtering layer exists and is available, kube-proxy uses it.
+
+=> It monitors kube-api server for changes.
+=> Updates the network with iptables rules.
+
+
+Container-Runtime:
+-> It is a software that manages container execution.
+
+Advantages:
+-> Provides core primitives to manage containers on host
+-> Container execution and supervision
+-> Image management
+-> Network interface management
+-> Manage local storage
+
+cAdvisor (Container Advisor):
+-> It acts like observer which checks the health of the containers
+-> Monitors resource usage
+-> Evaluates container performance
+
+-> provides built-in web interface at port 4194 for monitoring the resource utilization.
+
+-----------x-------------------x---------------
+
+Pod and nodes
+
+-> Pod runs on a node
+-> Node is a worker machine
+-> Node is managed by control plane
+-> Node can have multiple pods
+-> Control plane handles the scheduling of the pods across the nodes
+
+
+Kubelet
+- helps communicating between control-plane and the nodes
+- Manages pods and containers running on a machine
+
+Container Runtime
+- Pulling the container image from a registry
+- Unpacking container
+- Running application
